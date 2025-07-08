@@ -1,0 +1,20 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main  # 可改为你实际的默认分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: 🧰 Install Vercel CLI
+      run: npm install -g vercel
+
+    - name: 🚀 Deploy to Vercel
+      run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --confirm
